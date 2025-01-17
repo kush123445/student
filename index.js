@@ -15,11 +15,11 @@ connectDB();
 app.use('/api', tutorRoutes);
 
 // Middleware
-app.use(express.json());
+//app.use(express.json());
 
 // Routes
 app.get('/',(req,res)=>{
-    res.send('hello')
+    res.send({h:'j'})
 })
 
 
