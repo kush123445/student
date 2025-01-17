@@ -3,8 +3,9 @@
     "node": "18.x"
   },
   "scripts": {
-    "build": "netlify deploy --prod"
+  "vercel-build": "node ./build.js" 
   },
+ 
   "dependencies": {
     "cors": "^2.8.5",
     "dns": "^0.2.2",
@@ -12,8 +13,6 @@
     "express": "^4.21.2",
     "mail-listener2": "^0.3.1",
     "mongoose": "^8.9.5",
-    "netlify-cli": "^18.0.1",
-    "netlify-lambda": "^2.0.16",
     "nodemailer": "^6.9.16",
     "nodemon": "^3.1.9",
     "serverless-http": "^3.2.0",
