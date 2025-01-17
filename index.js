@@ -1,6 +1,6 @@
 const express = require('express');
-const connectDB = require('../config/db');
-const tutorRoutes = require('../routes/tutorRoutes');
+const connectDB = require('./config/db');
+const tutorRoutes = require('./routes/tutorRoutes');
 const cors = require('cors'); // Import cors
 require('dotenv').config();
 
@@ -20,7 +20,7 @@ app.get('/',(req,res)=>{
     res.json({"hi":'hello'})
 })
 
-app.use('/api', tutorRoutes);
+//app.use('/api', tutorRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
