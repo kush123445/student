@@ -12,6 +12,8 @@ app.options('*', cors());
 //ct to the database
 connectDB();
 
+app.use('/api', tutorRoutes);
+
 // Middleware
 app.use(express.json());
 
@@ -20,7 +22,6 @@ app.get('/',(req,res)=>{
     res.send('hello')
 })
 
-app.use('/api', tutorRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
