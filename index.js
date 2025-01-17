@@ -17,7 +17,7 @@ app.use(express.json());
 
 // Routes
 app.get('/',(req,res)=>{
-    res.send('hello')
+    res.json({"hi":'hello'})
 })
 
 app.use('/api', tutorRoutes);
