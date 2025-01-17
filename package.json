@@ -2,8 +2,11 @@
   "engine": {
     "node": "18.x"
   },
+  
+
+  "main": "index.js",
   "scripts": {
-  "vercel-build": "node ./build.js" 
+    "start": "node index.js"
   },
  
   "dependencies": {
