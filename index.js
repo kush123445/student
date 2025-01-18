@@ -8,7 +8,7 @@ const app = express();
 
 // Enable CORS
 app.use(cors());
-app.options('*', cors());
+
 //ct to the database
 connectDB();
 
