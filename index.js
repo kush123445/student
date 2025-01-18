@@ -20,7 +20,7 @@ app.get('/',(req,res)=>{
     res.json({"hi":'hello'})
 })
 
-//app.use('/api', tutorRoutes);
+app.use('/api', tutorRoutes);
 
 
 

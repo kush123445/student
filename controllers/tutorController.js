@@ -212,7 +212,7 @@ const submitForm = async (req, res) => {
     );
 
     // Send verification email
-    const verificationLink = `http://localhost:5000/api/verify-email-tutor?email=${email}&code=${verificationCode}`;
+    const verificationLink = `${process.env.HOST}/api/verify-email-tutor?email=${email}&code=${verificationCode}`;
     const htmlContentV = generateVerificationEmailContent(verificationLink);
     await sendEmail(email, 'Verify your email', htmlContentV);
 
@@ -258,7 +258,7 @@ const submitForm = async (req, res) => {
   
   const adminEmailSubject = 'New Tutor Registered';
   
-  await sendEmail('agraluvagarwal@gmail.com', adminEmailSubject, adminEmailContent);
+  await sendEmail(process.env.ADMIN, adminEmailSubject, adminEmailContent);
 
     res.status(200).json({ message: 'Verification email sent. Please check your email to verify.' });
   } catch (error) {
@@ -297,7 +297,7 @@ const submitStudentForm = async (req, res) => {
       );
   
       // Step 4: Send verification email
-      const verificationLink = `http://localhost:5000/api/students/verify-email?email=${email}&code=${verificationCode}`;
+      const verificationLink = `${process.env.HOST}/api/students/verify-email?email=${email}&code=${verificationCode}`;
       const htmlContentV = generateVerificationEmailContent(verificationLink);
       await sendEmail(email, 'Verify your email', htmlContentV);
 
@@ -346,7 +346,7 @@ const submitStudentForm = async (req, res) => {
 
       const adminEmailSubject = 'New Student Registered';
 
-await sendEmail('agraluvagarwal@gmail.com', adminEmailSubject, adminEmailContent);
+await sendEmail(process.env.ADMIN, adminEmailSubject, adminEmailContent);
   
       // Step 5: Respond with success message
       res.status(200).json({ message: 'Verification email sent. Please check your email to verify.' });
@@ -418,12 +418,27 @@ const verifyEmail = async (req, res) => {
 
 const adminEmailSubject = 'New Tutor Verified';
 
-await sendEmail('kushalhts00@gmail.com', adminEmailSubject, adminEmailContent);
-
-    res.status(200).json({ message: 'Email verified successfully. Your form is submitted.' });
+await sendEmail(process.env.ADMIN, adminEmailSubject, adminEmailContent);
+res.send(`
+  <div style="font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; flex-direction: column; background-color: #d4edda; color: #155724;">
+      <h1>Verification Successful!</h1>
+      <p style="font-size: 16px;">Thank you for verifying your email. Redirecting you to the homepage...</p>
+      <script>
+          setTimeout(() => {
+              window.location.href = "http://localhost:3000";
+          }, 3000);
+      </script>
+  </div>
+`);
+   // res.status(200).json({ message: 'Email verified successfully. Your form is submitted.' });
   } catch (error) {
-
-    res.status(500).json({ message: 'Server error', error: error.message });
+    res.send(`
+      <div style="font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; flex-direction: column; background-color: #f8d7da; color: #721c24;">
+          <h1>An Error Occurred</h1>
+          <p style="font-size: 16px;">Please try again later or contact support.</p>
+      </div>
+  `);
+  //  res.status(500).json({ message: 'Server error', error: error.message });
   }
 };
 
@@ -491,12 +506,29 @@ const verifyStudentEmail = async (req, res) => {
 
       const adminEmailSubject = 'New Student Verified';
 
-await sendEmail('kushalhts00@gmail.com', adminEmailSubject, adminEmailContent);
+await sendEmail(process.env.ADMIN, adminEmailSubject, adminEmailContent);
   
       // Step 3: Respond with a success message
-      res.status(200).json({ message: 'Email verified successfully. You can now  in.' });
+      res.send(`
+        <div style="font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; flex-direction: column; background-color: #d4edda; color: #155724;">
+            <h1>Verification Successful!</h1>
+            <p style="font-size: 16px;">Thank you for verifying your email. Redirecting you to the homepage...</p>
+            <script>
+                setTimeout(() => {
+                    window.location.href = "http://localhost:3000";
+                }, 3000);
+            </script>
+        </div>
+      `);
+    //  res.status(200).json({ message: 'Email verified successfully. You can now  in.' });
     } catch (error) {
-      res.status(500).json({ message: 'Server error', error: error.message });
+      res.send(`
+        <div style="font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; flex-direction: column; background-color: #f8d7da; color: #721c24;">
+            <h1>An Error Occurred</h1>
+            <p style="font-size: 16px;">Please try again later or contact support.</p>
+        </div>
+    `);
+    //  res.status(500).json({ message: 'Server error', error: error.message });
     }
   };
   
