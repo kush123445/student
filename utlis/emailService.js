@@ -14,34 +14,11 @@ const transporter = nodemailer.createTransport({
   debug: true,  // Log debugging output
 });
 
-// Function to validate email domain
-const isEmailDomainValid = async (email) => {
-    const domain = email.split('@')[1];
-    console.log(`Checking domain: ${domain}`);
-    return new Promise((resolve, reject) => {
-      dns.resolveMx(domain, (err, addresses) => {
-        if (err || addresses.length === 0) {
-          console.log('No MX records found or error occurred');
-          reject(new Error('Invalid email domain'));
-        } else {
-          const hasValidMailServer = addresses.some(address => address.priority > 0);
-          if (hasValidMailServer) {
-            console.log("Valid mail server found");
-            resolve(true);
-          } else {
-            console.log('No valid mail server found');
-            reject(new Error('Invalid email domain'));
-          }
-        }
-      });
-    });
-  };
-  
+
 // Updated sendEmail function
 const sendEmail = async (to, subject, html) => {
   try {
-    // Validate email domain
-  //  await isEmailDomainValid(to);
+   
 
   console.log(to)
 
@@ -53,8 +30,21 @@ const sendEmail = async (to, subject, html) => {
       html,
     };
 
+    await new Promise((resolve, reject) => {
+      // send mail
+      transporter.sendMail(mailOptions, (err, info) => {
+          if (err) {
+              console.error(err);
+              reject(err);
+          } else {
+              console.log(info);
+              resolve(info);
+          }
+      });
+  });
+
     // Attempt to send the email
-    transporter.sendMail(mailOptions)
+  //  transporter.sendMail(mailOptions)
   } catch (error) {
     console.error('Error:', error.message);
   }
