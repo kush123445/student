@@ -461,7 +461,7 @@ const verifyStudentEmail = async (req, res) => {
       // Step 2: Mark the student as verified
       student.isVerified = true;
       student.verificationCode = null; // Clear the verification code
-      await Student.save();
+      await student.save();
       // HTML content to be sent in the email
 
 
@@ -512,7 +512,7 @@ const verifyStudentEmail = async (req, res) => {
       const adminEmailSubject = 'New Student Verified';
 
 await sendEmail(process.env.ADMIN, adminEmailSubject, adminEmailContent);
-  
+
       // Step 3: Respond with a success message
       res.send(`
         <div style="font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; flex-direction: column; background-color: #d4edda; color: #155724;">
@@ -527,6 +527,7 @@ await sendEmail(process.env.ADMIN, adminEmailSubject, adminEmailContent);
       `);
     //  res.status(200).json({ message: 'Email verified successfully. You can now  in.' });
     } catch (error) {
+      
       res.send(`
         <div style="font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; flex-direction: column; background-color: #f8d7da; color: #721c24;">
             <h1>An Error Occurred</h1>

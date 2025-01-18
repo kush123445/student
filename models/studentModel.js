@@ -21,7 +21,7 @@ const studentSchema = new mongoose.Schema(
       required: true,
       match: /^[0-9]{10}$/, // Validates 10-digit mobile numbers
     },
-    classEnrolled: {
+    studentClass: {
       type: String,
       required: true,
     },
