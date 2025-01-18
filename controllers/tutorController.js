@@ -425,7 +425,7 @@ res.send(`
       <p style="font-size: 16px;">Thank you for verifying your email. Redirecting you to the homepage...</p>
       <script>
           setTimeout(() => {
-              window.location.href = "http://localhost:3000";
+              window.location.href = "https://agra-tutorials.netlify.app/";
           }, 3000);
       </script>
   </div>
@@ -436,6 +436,11 @@ res.send(`
       <div style="font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; flex-direction: column; background-color: #f8d7da; color: #721c24;">
           <h1>An Error Occurred</h1>
           <p style="font-size: 16px;">Please try again later or contact support.</p>
+          <script>
+                setTimeout(() => {
+                    window.location.href = "https://agra-tutorials.netlify.app/";
+                }, 3000);
+            </script>
       </div>
   `);
   //  res.status(500).json({ message: 'Server error', error: error.message });
@@ -515,7 +520,7 @@ await sendEmail(process.env.ADMIN, adminEmailSubject, adminEmailContent);
             <p style="font-size: 16px;">Thank you for verifying your email. Redirecting you to the homepage...</p>
             <script>
                 setTimeout(() => {
-                    window.location.href = "http://localhost:3000";
+                    window.location.href = "https://agra-tutorials.netlify.app/";
                 }, 3000);
             </script>
         </div>
@@ -526,6 +531,11 @@ await sendEmail(process.env.ADMIN, adminEmailSubject, adminEmailContent);
         <div style="font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; flex-direction: column; background-color: #f8d7da; color: #721c24;">
             <h1>An Error Occurred</h1>
             <p style="font-size: 16px;">Please try again later or contact support.</p>
+            <script>
+                setTimeout(() => {
+                    window.location.href = "https://agra-tutorials.netlify.app/";
+                }, 3000);
+            </script>
         </div>
     `);
     //  res.status(500).json({ message: 'Server error', error: error.message });

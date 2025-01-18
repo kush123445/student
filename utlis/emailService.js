@@ -9,6 +9,9 @@ const transporter = nodemailer.createTransport({
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
   },
+  secure: true,
+  logger: true, // Log SMTP connection info
+  debug: true,  // Log debugging output
 });
 
 // Function to validate email domain
