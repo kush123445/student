@@ -297,7 +297,7 @@ const submitStudentForm = async (req, res) => {
       );
   
       // Step 4: Send verification email
-      const verificationLink = `${process.env.HOST}/api/students/verify-email?email=${email}&code=${verificationCode}`;
+      const verificationLink = `${process.env.HOST}/api/verify-email-student?email=${email}&code=${verificationCode}`;
       const htmlContentV = generateVerificationEmailContent(verificationLink);
       await sendEmail(email, 'Verify your email', htmlContentV);
 
